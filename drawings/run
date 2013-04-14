@@ -1,0 +1,6 @@
+#!/bin/bash
+MAZAKODRON_DIR=~/git/mazakodron
+DIR=`pwd`
+
+cd $MAZAKODRON_DIR/sterowator
+python3 sterowator.py $DIR/output/$1.mzkdrn
