@@ -8,6 +8,7 @@ do
   echo $name
   if [[ "x$1" != "x" ]]; then
     python $MAZAKODRON_DIR/przerabiator/mazakodron_przerabiator.py $file > .tmp.svg
+    cp .tmp.svg $file
   else
     cp $file .tmp.svg
   fi

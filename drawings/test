@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+MAZAKODRON_DIR=~/git/mazakodron
+
+name=$1
+file="svg/"$name".svg"
+if [ ! -f $file ]; then
+  ls svg/*.svg
+  exit 1
+fi
+
+if [ "x$2" != "x" ]; then
+  echo "Przerabiator"
+  python $MAZAKODRON_DIR/przerabiator/mazakodron_przerabiator.py $file > .tmp.svg
+  cp .tmp.svg $file
+else
+  cp $file .tmp.svg
+fi
+
+echo "Punktowator"
+python $MAZAKODRON_DIR/punktowator/mazakodron_punktowator.py .tmp.svg > output/${name%.svg}.mzkdrn
+rm .tmp.svg
+./run $name --speed=0
